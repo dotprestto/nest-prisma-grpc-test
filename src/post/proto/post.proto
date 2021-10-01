@@ -1,0 +1,28 @@
+syntax = "proto3";
+package post;
+
+service PostService {
+	rpc Feed (PublishedPostsRequest) returns (PublishedPostsResponse);
+}
+
+message PublishedPostsRequest {
+	optional int32 skip = 1;
+	optional int32 take = 2;
+}
+// id        Int      @id @default(autoincrement())
+// title     String
+// content   String?
+// published Boolean? @default(false)
+// author    User?    @relation(fields: [authorId], references: [id])
+// authorId  Int?
+message PostResponse {
+	int32 id = 1;
+	string title = 2;
+	string content = 3;
+	bool published = 4;
+	int32 authorId = 5;
+}
+
+message PublishedPostsResponse {
+	repeated PostResponse posts = 1;
+}
