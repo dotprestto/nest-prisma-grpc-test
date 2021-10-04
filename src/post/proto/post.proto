@@ -5,9 +5,14 @@ service PostService {
 	rpc Feed (PublishedPostsRequest) returns (PublishedPostsResponse);
 }
 
+message Cursor {
+	int32 id = 1;
+}
+
 message PublishedPostsRequest {
 	optional int32 skip = 1;
 	optional int32 take = 2;
+	optional Cursor cursor = 3;
 }
 // id        Int      @id @default(autoincrement())
 // title     String

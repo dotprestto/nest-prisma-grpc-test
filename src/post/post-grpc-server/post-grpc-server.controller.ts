@@ -8,7 +8,8 @@ export class PostGrpcServerController {
   constructor(private postService: PostService) {}
 
   @GrpcMethod('PostService', 'Feed')
-  async getPublishedPosts(data) {
+  async getPublishedPosts(data: Prisma.PostFindManyArgs) {
+    console.log(data);
     const posts = await this.postService.posts({
       where: { published: true },
     });
